@@ -14,4 +14,19 @@ class Task {
       DateTime? createdAt
       }
       ) : createdAt = createdAt ?? DateTime.now();
+
+  Task copyWith({
+    String? id,
+    String? title,
+    int? score,
+    bool? isDone,
+    DateTime? createdAt,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      score: score ?? this.score,
+      isDone: isDone ?? this.isDone,
+      createdAt: createdAt ?? this.createdAt,
+    );}
 }

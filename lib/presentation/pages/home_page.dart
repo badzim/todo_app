@@ -11,7 +11,9 @@ class HomePage extends StatelessWidget {
     final TextEditingController inputController = TextEditingController();
 
     return Scaffold(
+      // conteneur de base
       appBar: AppBar(
+        // barre du haut
         title: const Text('Mes ToDos'),
         actions: [
           IconButton(
@@ -68,7 +70,7 @@ class HomePage extends StatelessWidget {
                           : TextDecoration.none,
                     ),
                   ),
-                  subtitle: Text('Score: ${task.score}'),
+                  subtitle: Text('Score: ${task.score}, createdAt: ${task.createdAt.day}/${task.createdAt.month}/${task.createdAt.year}'),
                 );
               },
             ),

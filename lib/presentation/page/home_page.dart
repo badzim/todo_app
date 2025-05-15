@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/presentation/page/edit_task_dialog.dart';
 import '../controller/task_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -95,6 +96,12 @@ class _HomePageState extends State<HomePage> {
                           : TextDecoration.none,
                     ),
                   ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) => EditTaskDialog(task: task),
+                    );
+                  },
                   subtitle: Text('Score: ${task.score}'),
                 );
               },

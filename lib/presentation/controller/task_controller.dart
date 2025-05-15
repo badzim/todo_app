@@ -44,6 +44,11 @@ class TaskController extends ChangeNotifier {
     }
   }
 
+  Future<void> editTask(Task task) async {
+    await _taskService.update(task);
+    await loadTasks();
+  }
+
   void deleteCheckedTasks() {
     _tasks.removeWhere((task) => task.isDone);
     notifyListeners();

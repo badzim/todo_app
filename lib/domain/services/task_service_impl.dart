@@ -30,8 +30,7 @@ class TaskServiceImpl implements TaskService {
 
   @override
   Future<void> update(Task task) {
-    // TODO: implement update
-    throw UnimplementedError();
+    return repository.update(task);
   }
 
 }

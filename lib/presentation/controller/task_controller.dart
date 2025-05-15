@@ -1,20 +1,18 @@
 // lib/presentation/controllers/task_controller.dart
 import 'package:flutter/material.dart';
+import 'package:todoapp/domain/services/task_service.dart';
 import '../../domain/entities/task.dart';
-import '../../domain/usecases/add_task.dart';
-import '../../domain/usecases/get_tasks.dart';
 
 class TaskController extends ChangeNotifier {
-  final AddTask _addTask;
-  final GetTasks _getTasks;
+  final TaskService _taskService;
 
   List<Task> _tasks = [];
   List<Task> get tasks => _tasks;
 
-  TaskController(this._addTask, this._getTasks);
+  TaskController(this._taskService);
 
   Future<void> loadTasks() async {
-    _tasks = await _getTasks();
+    _tasks = await _taskService.getAll();
     notifyListeners();
   }
 
@@ -23,7 +21,17 @@ class TaskController extends ChangeNotifier {
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       title: title,
     );
-    await _addTask(task);
+    await _taskService.add(task);
+    await loadTasks();
+  }
+
+  Future<void> addTaskWithScore(String title, int score) async {
+    final task = Task(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      title: title,
+      score: score,
+    );
+    await _taskService.add(task);
     await loadTasks();
   }
 

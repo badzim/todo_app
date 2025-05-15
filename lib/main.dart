@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'presentation/pages/home_page.dart';
-import 'presentation/controllers/task_controller.dart';
-import 'domain/usecases/add_task.dart';
-import 'domain/usecases/get_tasks.dart';
+import 'package:todoapp/presentation/page/home_page.dart';
 import 'data/repositories/task_repository_impl.dart';
+import 'domain/services/task_service_impl.dart';
+import 'presentation/controller/task_controller.dart';
+
 
 void main() {
   final repository = TaskRepositoryImpl();
-  final addTask = AddTask(repository);
-  final getTasks = GetTasks(repository);
-  final controller = TaskController(addTask, getTasks);
+  final taskService = TaskServiceImpl(repository);
+  final controller = TaskController(taskService);
 
   runApp(
     ChangeNotifierProvider(

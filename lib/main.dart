@@ -4,7 +4,6 @@ import 'package:todoapp/data/model/task_model.dart';
 import 'package:todoapp/injection.dart';
 import 'package:todoapp/presentation/page/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todoapp/service_locator.dart';
 import 'presentation/controller/task_controller.dart';
 
 

@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todoapp/injection.config.dart';
+import 'package:todoapp/shared/injection.config.dart';
 
 final sl = GetIt.instance;
 

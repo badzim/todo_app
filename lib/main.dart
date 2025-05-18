@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/data/model/task_model.dart';
-import 'package:todoapp/injection.dart';
+import 'package:todoapp/shared/injection.dart';
 import 'package:todoapp/presentation/page/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'presentation/controller/task_controller.dart';

@@ -1,7 +1,7 @@
 // lib/presentation/controllers/task_controller.dart
 import 'package:flutter/material.dart';
-import 'package:todoapp/domain/services/task_service.dart';
-import '../../domain/entities/task.dart';
+import 'package:todoapp/domain/entitie/task.dart';
+import 'package:todoapp/domain/service/task_service.dart';
 
 class TaskController extends ChangeNotifier {
   final TaskService _taskService;

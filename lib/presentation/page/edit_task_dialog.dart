@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/domain/entitie/task.dart';
 import 'package:todoapp/presentation/controller/task_controller.dart';
-import '../../domain/entities/task.dart';
 
 class EditTaskDialog extends StatefulWidget {
   final Task task;

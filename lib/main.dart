@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/data/repositorie/task_repository_impl.dart';
+import 'package:todoapp/domain/service/task_service_impl.dart';
 import 'package:todoapp/presentation/page/home_page.dart';
-import 'data/repositories/task_repository_impl.dart';
-import 'domain/services/task_service_impl.dart';
 import 'presentation/controller/task_controller.dart';
 
 

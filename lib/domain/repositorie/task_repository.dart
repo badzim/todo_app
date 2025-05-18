@@ -1,9 +1,9 @@
-import '../entities/task.dart';
+import 'package:todoapp/domain/entitie/task.dart';
 
-
-abstract class TaskService {
+abstract class TaskRepository {
   Future<void> add(Task task);
   Future<List<Task>> getAll();
   Future<void> update(Task task);
   Future<void> delete(String id);
 }
+

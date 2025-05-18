@@ -1,6 +1,6 @@
 // lib/data/repositories/task_repository_impl.dart
-import '../../domain/entities/task.dart';
-import '../../domain/repositories/task_repository.dart';
+import 'package:todoapp/domain/entitie/task.dart';
+import 'package:todoapp/domain/repositorie/task_repository.dart';
 
 class TaskRepositoryImpl implements TaskRepository {
   final List<Task> _tasks = [];

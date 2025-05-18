@@ -8,4 +8,4 @@ final sl = GetIt.instance;
   initializerName: r'$initGetIt', // the default method name that will be generated
   preferRelativeImports: true, // default
 )
-Future<void> configureDependencies() async => await sl.$initGetIt();
+Future<void> configureDependencies() async => sl.$initGetIt(environment: Environment.prod);

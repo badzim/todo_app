@@ -1,7 +1,8 @@
-// lib/data/repositories/task_repository_in_memory.dart
+import 'package:injectable/injectable.dart';
 import 'package:todoapp/domain/entitie/task.dart';
 import 'package:todoapp/domain/repositorie/task_repository.dart';
 
+@LazySingleton(as: TaskRepository, env: [Environment.dev])
 class TaskRepositoryInMemory implements TaskRepository {
   final List<Task> _tasks = [];
 

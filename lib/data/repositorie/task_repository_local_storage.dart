@@ -4,7 +4,7 @@ import 'package:todoapp/domain/entitie/task.dart';
 import 'package:todoapp/domain/repositorie/task_repository.dart';
 import '../datasources/local_data_source.dart';
 
-@LazySingleton(as: TaskRepository)
+@LazySingleton(as: TaskRepository, env: [Environment.prod])
 class TaskRepositoryLocalStorage implements TaskRepository {
   final LocalDataSource dataSource;
 

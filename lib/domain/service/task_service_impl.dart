@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:todoapp/domain/entitie/task.dart';
 import 'package:todoapp/domain/repositorie/task_repository.dart';
 import 'package:todoapp/domain/service/task_service.dart';
 
+@LazySingleton(as: TaskService)
 class TaskServiceImpl implements TaskService {
 
   final TaskRepository repository;

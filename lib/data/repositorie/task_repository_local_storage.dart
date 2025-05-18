@@ -1,8 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:todoapp/data/model/task_model.dart';
 import 'package:todoapp/domain/entitie/task.dart';
 import 'package:todoapp/domain/repositorie/task_repository.dart';
 import '../datasources/local_data_source.dart';
 
+@LazySingleton(as: TaskRepository)
 class TaskRepositoryLocalStorage implements TaskRepository {
   final LocalDataSource dataSource;
 

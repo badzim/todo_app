@@ -1,7 +1,5 @@
 import 'package:todoapp/domain/entitie/task.dart';
 
-
-
 abstract class TaskService {
   Future<void> add(Task task);
   Future<List<Task>> getAll();

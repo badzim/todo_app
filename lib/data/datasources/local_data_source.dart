@@ -1,6 +1,8 @@
 import 'package:hive/hive.dart';
+import 'package:injectable/injectable.dart';
 import 'package:todoapp/data/model/task_model.dart';
 
+@LazySingleton()
 class LocalDataSource {
   static const boxName = 'tasks';
 

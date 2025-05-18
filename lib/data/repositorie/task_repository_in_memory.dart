@@ -1,8 +1,8 @@
-// lib/data/repositories/task_repository_impl.dart
+// lib/data/repositories/task_repository_in_memory.dart
 import 'package:todoapp/domain/entitie/task.dart';
 import 'package:todoapp/domain/repositorie/task_repository.dart';
 
-class TaskRepositoryImpl implements TaskRepository {
+class TaskRepositoryInMemory implements TaskRepository {
   final List<Task> _tasks = [];
 
   @override

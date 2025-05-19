@@ -31,6 +31,7 @@ class TaskRepositoryLocalStorage implements TaskRepository {
     await dataSource.deleteTask(id);
   }
 
+  @override
   Future<void> deleteAllCheckedTasks() async {
     await dataSource.deleteAllCheckedTasks();
   }

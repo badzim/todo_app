@@ -17,8 +17,7 @@ class TaskServiceImpl implements TaskService {
 
   @override
   Future<void> delete(String id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+    return repository.delete(id);
   }
 
   @override
@@ -31,4 +30,8 @@ class TaskServiceImpl implements TaskService {
     return repository.update(task);
   }
 
+  @override
+  Future<void> deleteAllCheckedTasks() {
+    return repository.deleteAllCheckedTasks();
+  }
 }

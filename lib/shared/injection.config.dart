@@ -11,13 +11,13 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../data/datasources/local_data_source.dart' as _i481;
-import '../data/repositorie/task_repository_in_memory.dart' as _i408;
-import '../data/repositorie/task_repository_local_storage.dart' as _i567;
-import '../domain/repositorie/task_repository.dart' as _i1064;
-import '../domain/service/task_service.dart' as _i185;
-import '../domain/service/task_service_impl.dart' as _i256;
-import '../presentation/controller/task_controller.dart' as _i842;
+import '../data/datasources/local_data_source.dart' as _i305;
+import '../data/repositorie/task_repository_in_memory.dart' as _i601;
+import '../data/repositorie/task_repository_local_storage.dart' as _i3;
+import '../domain/repositorie/task_repository.dart' as _i340;
+import '../domain/service/task_service.dart' as _i669;
+import '../domain/service/task_service_impl.dart' as _i861;
+import '../presentation/controller/task_controller.dart' as _i645;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -33,19 +33,19 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<_i481.LocalDataSource>(() => _i481.LocalDataSource());
-    gh.lazySingleton<_i1064.TaskRepository>(
-      () => _i408.TaskRepositoryInMemory(),
+    gh.lazySingleton<_i305.LocalDataSource>(() => _i305.LocalDataSource());
+    gh.lazySingleton<_i340.TaskRepository>(
+      () => _i601.TaskRepositoryInMemory(),
       registerFor: {_dev},
     );
-    gh.lazySingleton<_i1064.TaskRepository>(
-      () => _i567.TaskRepositoryLocalStorage(gh<_i481.LocalDataSource>()),
+    gh.lazySingleton<_i340.TaskRepository>(
+      () => _i3.TaskRepositoryLocalStorage(gh<_i305.LocalDataSource>()),
       registerFor: {_prod},
     );
-    gh.lazySingleton<_i185.TaskService>(
-        () => _i256.TaskServiceImpl(gh<_i1064.TaskRepository>()));
-    gh.factory<_i842.TaskController>(
-        () => _i842.TaskController(gh<_i185.TaskService>()));
+    gh.lazySingleton<_i669.TaskService>(
+        () => _i861.TaskServiceImpl(gh<_i340.TaskRepository>()));
+    gh.factory<_i645.TaskController>(
+        () => _i645.TaskController(gh<_i669.TaskService>()));
     return this;
   }
 }

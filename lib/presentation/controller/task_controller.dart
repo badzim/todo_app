@@ -36,12 +36,12 @@ class TaskController extends ChangeNotifier {
     await loadTasks();
   }
 
-  void toggleTaskStatus(String id) {
+  void toggleTaskStatus(String id) async {
     final index = _tasks.indexWhere((t) => t.id == id);
+
     if (index != -1) {
       final current = _tasks[index];
-      _tasks[index] = current.copyWith(isDone: !current.isDone);
-      notifyListeners();
+      editTask(current.copyWith(isDone: !current.isDone));
     }
   }
 
@@ -50,8 +50,8 @@ class TaskController extends ChangeNotifier {
     await loadTasks();
   }
 
-  void deleteCheckedTasks() {
-    _tasks.removeWhere((task) => task.isDone);
-    notifyListeners();
+  void deleteAllCheckedTasks() async {
+    await _taskService.deleteAllCheckedTasks();
+    await loadTasks();
   }
 }

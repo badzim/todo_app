@@ -28,4 +28,9 @@ class TaskRepositoryInMemory implements TaskRepository {
   Future<void> delete(String id) async {
     _tasks.removeWhere((task) => task.id == id);
   }
+
+  @override
+  Future<void> deleteAllCheckedTasks() async {
+    _tasks.removeWhere((task) => task.isDone == true);
+  }
 }

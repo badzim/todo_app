@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<TaskController>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mes ToDos'),
@@ -25,7 +24,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.delete),
             tooltip: 'Supprimer les tâches cochées',
-            onPressed: controller.deleteCheckedTasks,
+            onPressed: controller.deleteAllCheckedTasks,
           ),
         ],
       ),

@@ -1,0 +1,21 @@
+{
+  "home": {
+    "title": "Mes tâches",
+    "add_task_hint": "Ajouter une tâche",
+    "delete_done": "Supprimer les tâches cochées"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue"
+  },
+  "task": {
+    "title": "Titre",
+    "score": "Priorité"
+  },
+  "edit": {
+    "title": "Modifier la tâche",
+    "is_done": "Marquer comme faite",
+    "save": "Enregistrer",
+    "cancel": "Annuler"
+  }
+}

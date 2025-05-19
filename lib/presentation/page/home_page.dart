@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/presentation/page/edit_task_dialog.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:todoapp/presentation/page/settings_page.dart';
 import '../controller/task_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,13 +19,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<TaskController>(context);
+    final locale = context.locale;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mes ToDos'),
+        title: Text(tr('home.title')),
         actions: [
           IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: tr('settings.title'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SettingsPage()),
+              );
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.delete),
-            tooltip: 'Supprimer les tâches cochées',
+            tooltip: tr('home.delete_done'),
             onPressed: controller.deleteAllCheckedTasks,
           ),
         ],
@@ -37,8 +50,8 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: TextField(
                     controller: inputController,
-                    decoration: const InputDecoration(
-                      hintText: 'Ajouter une tâche',
+                    decoration: InputDecoration(
+                      hintText: tr('home.add_task_hint'),
                     ),
                   ),
                 ),
@@ -55,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                     final score = index + 1;
                     return DropdownMenuItem(
                       value: score,
-                      child: Text('Score $score'),
+                      child: Text('${tr('task.score')} $score'),
                     );
                   }),
                 ),
@@ -101,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                       builder: (_) => EditTaskDialog(task: task),
                     );
                   },
-                  subtitle: Text('Score: ${task.score}'),
+                  subtitle: Text('${tr('task.score')} ${task.score}'),
                 );
               },
             ),

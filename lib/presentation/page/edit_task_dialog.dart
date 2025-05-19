@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/domain/entitie/task.dart';
@@ -30,13 +31,13 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
     final controller = Provider.of<TaskController>(context, listen: false);
 
     return AlertDialog(
-      title: const Text('Modifier la tâche'),
+      title: Text(tr('edit.title')),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: _titleController,
-            decoration: const InputDecoration(labelText: 'Titre'),
+            decoration: InputDecoration(labelText: tr('task.title')),
           ),
           DropdownButton<int>(
             value: _score,
@@ -51,7 +52,7 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
               final score = index + 1;
               return DropdownMenuItem(
                 value: score,
-                child: Text('Score $score'),
+                child: Text('${tr('task.score')} $score'),
               );
             }),
           ),
@@ -62,17 +63,17 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
                 _isDone = value ?? false;
               });
             },
-            title: const Text('Marquer comme faite'),
+            title: Text(tr('edit.is_done')),
           )
         ],
       ),
       actions: [
         TextButton(
-          child: const Text('Annuler'),
+          child: Text(tr('edit.cancel')),
           onPressed: () => Navigator.of(context).pop(),
         ),
         ElevatedButton(
-          child: const Text('Enregistrer'),
+          child: Text(tr('edit.save')),
           onPressed: () {
             final updatedTask = widget.task.copyWith(
               title: _titleController.text,

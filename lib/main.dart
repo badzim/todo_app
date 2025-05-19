@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/data/model/task_model.dart';
@@ -9,15 +10,26 @@ import 'presentation/controller/task_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 🌍 EasyLocalization
+  await EasyLocalization.ensureInitialized();
+
+  // 🐝 Hive
   await Hive.initFlutter();
   Hive.registerAdapter(TaskModelAdapter());
 
-  await configureDependencies(); // ⬅️ nouvelle méthode DI
+  // 🧠 Dependency Injection
+  await configureDependencies();
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => sl<TaskController>()..loadTasks(),
-      child: const MyApp(),
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('fr')],
+      path: 'assets/translation',
+      fallbackLocale: const Locale('en'),
+      child: ChangeNotifierProvider(
+        create: (_) => sl<TaskController>()..loadTasks(),
+        child: const MyApp(),
+      ),
     ),
   );
 }
@@ -26,8 +38,12 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      title: 'ToDo',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      home: const HomePage(),
     );
   }
 }

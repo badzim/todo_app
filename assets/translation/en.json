@@ -1,0 +1,21 @@
+{
+  "home": {
+    "title": "My Tasks",
+    "add_task_hint": "Add a task",
+    "delete_done": "Delete checked tasks"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language"
+  },
+  "task": {
+    "title": "Title",
+    "score": "Priority"
+  },
+  "edit": {
+    "title": "Edit Task",
+    "is_done": "Mark as done",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}

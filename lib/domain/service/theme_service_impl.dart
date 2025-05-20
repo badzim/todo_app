@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todoapp/domain/repositorie/theme_repository.dart';
-import 'package:todoapp/domain/service/theme_service.dart';
+import 'package:todoapp/domain/port/input/theme_service.dart';
+import 'package:todoapp/domain/port/output/theme_repository.dart';
 
 @LazySingleton(as: ThemeService, env: [Environment.prod, Environment.dev])
 class ThemeServiceImpl implements ThemeService {

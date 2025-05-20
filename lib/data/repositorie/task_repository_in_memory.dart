@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:todoapp/domain/entitie/task.dart';
-import 'package:todoapp/domain/repositorie/task_repository.dart';
+import 'package:todoapp/domain/port/output/task_repository.dart';
 
 @LazySingleton(as: TaskRepository, env: [Environment.dev])
 class TaskRepositoryInMemory implements TaskRepository {

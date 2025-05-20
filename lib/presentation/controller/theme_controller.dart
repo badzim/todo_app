@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todoapp/domain/service/theme_service.dart';
+import 'package:todoapp/domain/port/input/theme_service.dart';
 
 @injectable
 class ThemeController extends ChangeNotifier {

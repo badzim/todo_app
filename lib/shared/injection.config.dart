@@ -16,11 +16,11 @@ import '../data/datasources/theme_local_data_source.dart' as _i918;
 import '../data/repositorie/task_repository_in_memory.dart' as _i601;
 import '../data/repositorie/task_repository_local_storage.dart' as _i3;
 import '../data/repositorie/theme_repository_local_storage.dart' as _i927;
-import '../domain/repositorie/task_repository.dart' as _i340;
-import '../domain/repositorie/theme_repository.dart' as _i636;
-import '../domain/service/task_service.dart' as _i669;
+import '../domain/port/input/task_service.dart' as _i67;
+import '../domain/port/input/theme_service.dart' as _i1067;
+import '../domain/port/output/task_repository.dart' as _i300;
+import '../domain/port/output/theme_repository.dart' as _i328;
 import '../domain/service/task_service_impl.dart' as _i861;
-import '../domain/service/theme_service.dart' as _i274;
 import '../domain/service/theme_service_impl.dart' as _i736;
 import '../presentation/controller/language_controller.dart' as _i545;
 import '../presentation/controller/task_controller.dart' as _i645;
@@ -41,19 +41,10 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i545.LanguageController>(() => _i545.LanguageController());
-    gh.lazySingleton<_i340.TaskRepository>(
+    gh.lazySingleton<_i300.TaskRepository>(
       () => _i601.TaskRepositoryInMemory(),
       registerFor: {_dev},
     );
-    gh.lazySingleton<_i669.TaskService>(
-      () => _i861.TaskServiceImpl(gh<_i340.TaskRepository>()),
-      registerFor: {
-        _prod,
-        _dev,
-      },
-    );
-    gh.factory<_i645.TaskController>(
-        () => _i645.TaskController(gh<_i669.TaskService>()));
     gh.lazySingleton<_i918.ThemeLocalDataSource>(
       () => _i918.ThemeLocalDataSource(),
       registerFor: {
@@ -68,26 +59,35 @@ extension GetItInjectableX on _i174.GetIt {
         _dev,
       },
     );
-    gh.lazySingleton<_i636.ThemeRepository>(
+    gh.lazySingleton<_i328.ThemeRepository>(
       () => _i927.ThemeRepositoryLocalStorage(gh<_i918.ThemeLocalDataSource>()),
       registerFor: {
         _prod,
         _dev,
       },
     );
-    gh.lazySingleton<_i274.ThemeService>(
-      () => _i736.ThemeServiceImpl(gh<_i636.ThemeRepository>()),
+    gh.lazySingleton<_i67.TaskService>(
+      () => _i861.TaskServiceImpl(gh<_i300.TaskRepository>()),
       registerFor: {
         _prod,
         _dev,
       },
     );
-    gh.lazySingleton<_i340.TaskRepository>(
+    gh.lazySingleton<_i300.TaskRepository>(
       () => _i3.TaskRepositoryLocalStorage(gh<_i135.TaskLocalDataSource>()),
       registerFor: {_prod},
     );
+    gh.factory<_i645.TaskController>(
+        () => _i645.TaskController(gh<_i67.TaskService>()));
+    gh.lazySingleton<_i1067.ThemeService>(
+      () => _i736.ThemeServiceImpl(gh<_i328.ThemeRepository>()),
+      registerFor: {
+        _prod,
+        _dev,
+      },
+    );
     gh.factory<_i892.ThemeController>(
-        () => _i892.ThemeController(gh<_i274.ThemeService>()));
+        () => _i892.ThemeController(gh<_i1067.ThemeService>()));
     return this;
   }
 }

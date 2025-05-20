@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todoapp/domain/entitie/task.dart';
-import 'package:todoapp/domain/service/task_service.dart';
+import 'package:todoapp/domain/port/input/task_service.dart';
 
 @injectable
 class TaskController extends ChangeNotifier {

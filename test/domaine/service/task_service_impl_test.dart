@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:todoapp/domain/entitie/task.dart';
-import 'package:todoapp/domain/repositorie/task_repository.dart';
+import 'package:todoapp/domain/port/output/task_repository.dart';
 import 'package:todoapp/domain/service/task_service_impl.dart';
 
 class MockTaskRepository extends Mock implements TaskRepository {}

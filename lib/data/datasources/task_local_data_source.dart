@@ -2,12 +2,12 @@ import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todoapp/data/model/task_model.dart';
 
-@LazySingleton()
-class LocalDataSource {
-  static const boxName = 'tasks';
+@LazySingleton(env: [Environment.prod, Environment.dev])
+class TaskLocalDataSource {
+  static const _boxName = 'tasks';
 
   Future<Box<TaskModel>> _openBox() async {
-    return await Hive.openBox<TaskModel>(boxName);
+    return await Hive.openBox<TaskModel>(_boxName);
   }
 
   Future<void> addTask(TaskModel task) async {

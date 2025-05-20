@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/data/model/task_model.dart';
+import 'package:todoapp/domain/port/input/notification_service.dart';
 import 'package:todoapp/presentation/controller/language_controller.dart';
 import 'package:todoapp/presentation/controller/theme_controller.dart';
 import 'package:todoapp/shared/injection.dart';
@@ -23,6 +24,9 @@ void main() async {
   // 🧠 Dependency Injection
   await configureDependencies();
 
+  await sl<NotificationService>().init();
+
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('fr')],
@@ -30,7 +34,13 @@ void main() async {
       fallbackLocale: const Locale('en'),
         child: MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (_) => sl<TaskController>()..loadTasks()),
+            ChangeNotifierProvider(create: (_) {
+              final controller = sl<TaskController>();
+              controller.loadTasks().then((_) {
+                controller.checkAndNotify(); // ✅ après chargement
+              });
+              return controller;
+            },),
             ChangeNotifierProvider(create: (_) => sl<LanguageController>()),
             ChangeNotifierProvider(create: (_) => sl<ThemeController>()..load())
           ],

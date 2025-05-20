@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todoapp/domain/entitie/task.dart';
+import 'package:todoapp/domain/port/input/notification_service.dart';
 import 'package:todoapp/domain/port/input/task_service.dart';
 
 @injectable
 class TaskController extends ChangeNotifier {
   final TaskService _taskService;
+  final NotificationService _notifier;
 
   List<Task> _tasks = [];
   List<Task> get tasks => _tasks;
 
-  TaskController(this._taskService);
+  TaskController(this._taskService, this._notifier);
 
   Future<void> loadTasks() async {
     _tasks = await _taskService.getAll();
@@ -53,5 +55,12 @@ class TaskController extends ChangeNotifier {
   void deleteAllCheckedTasks() async {
     await _taskService.deleteAllCheckedTasks();
     await loadTasks();
+  }
+
+  Future<void> checkAndNotify() async {
+    final pending = _tasks.where((t) => !t.isDone).length;
+    if (pending > 0) {
+      await _notifier.showTaskReminderNotification(pending);
+    }
   }
 }

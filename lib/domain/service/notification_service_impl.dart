@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todoapp/domain/port/input/notification_service.dart';
@@ -31,8 +32,12 @@ class NotificationServiceImpl implements NotificationService {
 
     await _plugin.show(
       0,
-      'Rappel ToDo',
-      'Tu as $pendingCount tâche(s) non terminée(s)',
+      tr('notification.title'),
+      plural(
+        'notification.pending_tasks',
+        pendingCount,
+        namedArgs: {'count': '$pendingCount'},
+      ),
       details,
     );
   }

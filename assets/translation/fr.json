@@ -21,5 +21,12 @@
     "is_done": "Marquer comme faite",
     "save": "Enregistrer",
     "cancel": "Annuler"
+  },
+  "notification": {
+    "title": "Rappel ToDo",
+    "pending_tasks": {
+      "one": "Tu as 1 tâche non terminée",
+      "other": "Tu as {count} tâches non terminées"
+    }
   }
 }

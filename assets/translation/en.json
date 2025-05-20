@@ -21,5 +21,12 @@
     "is_done": "Mark as done",
     "save": "Save",
     "cancel": "Cancel"
+  },
+  "notification": {
+    "title": "ToDo Reminder",
+    "pending_tasks": {
+      "one": "You have 1 unfinished task",
+      "other": "You have {count} unfinished tasks"
+    }
   }
 }

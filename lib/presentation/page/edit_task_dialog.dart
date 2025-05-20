@@ -29,7 +29,6 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<TaskController>(context, listen: false);
-
     return AlertDialog(
       title: Text(tr('edit.title')),
       content: Column(

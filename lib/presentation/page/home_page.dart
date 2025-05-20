@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/presentation/controller/language_controller.dart';
 import 'package:todoapp/presentation/page/edit_task_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:todoapp/presentation/page/settings_page.dart';
@@ -14,12 +15,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController inputController = TextEditingController();
+
   int selectedScore = 1;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<TaskController>(context);
-    final locale = context.locale;
+    final taskController = Provider.of<TaskController>(context);
+    final languageController = Provider.of<LanguageController>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(tr('home.title')),
@@ -37,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.delete),
             tooltip: tr('home.delete_done'),
-            onPressed: controller.deleteAllCheckedTasks,
+            onPressed: taskController.deleteAllCheckedTasks,
           ),
         ],
       ),
@@ -77,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     final title = inputController.text.trim();
                     if (title.isNotEmpty) {
-                      controller.addTaskWithScore(title, selectedScore);
+                      taskController.addTaskWithScore(title, selectedScore);
                       inputController.clear();
                       setState(() {
                         selectedScore = 1;
@@ -90,14 +93,14 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: controller.tasks.length,
+              itemCount: taskController.tasks.length,
               itemBuilder: (context, index) {
-                final task = controller.tasks[index];
+                final task = taskController.tasks[index];
                 return ListTile(
                   trailing: Checkbox(
                     value: task.isDone,
                     onChanged: (_) {
-                      controller.toggleTaskStatus(task.id);
+                      taskController.toggleTaskStatus(task.id);
                     },
                   ),
                   title: Text(

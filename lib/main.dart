@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/data/model/task_model.dart';
+import 'package:todoapp/presentation/controller/language_controller.dart';
 import 'package:todoapp/shared/injection.dart';
 import 'package:todoapp/presentation/page/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -26,10 +27,15 @@ void main() async {
       supportedLocales: const [Locale('en'), Locale('fr')],
       path: 'assets/translation',
       fallbackLocale: const Locale('en'),
-      child: ChangeNotifierProvider(
-        create: (_) => sl<TaskController>()..loadTasks(),
-        child: const MyApp(),
-      ),
+        child: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => sl<TaskController>()..loadTasks()),
+            ChangeNotifierProvider(
+              create: (_) => sl<LanguageController>()
+            ),
+          ],
+          child: const MyApp()
+        )
     ),
   );
 }

@@ -17,6 +17,7 @@ import '../data/repositorie/task_repository_local_storage.dart' as _i3;
 import '../domain/repositorie/task_repository.dart' as _i340;
 import '../domain/service/task_service.dart' as _i669;
 import '../domain/service/task_service_impl.dart' as _i861;
+import '../presentation/controller/language_controller.dart' as _i545;
 import '../presentation/controller/task_controller.dart' as _i645;
 
 const String _dev = 'dev';
@@ -33,6 +34,7 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    gh.factory<_i545.LanguageController>(() => _i545.LanguageController());
     gh.lazySingleton<_i305.LocalDataSource>(() => _i305.LocalDataSource());
     gh.lazySingleton<_i340.TaskRepository>(
       () => _i601.TaskRepositoryInMemory(),
